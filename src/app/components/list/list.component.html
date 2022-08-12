@@ -1,0 +1,22 @@
+<div class="main">
+  <div>
+    <form [formGroup]="form" class="form">
+      <mat-list *ngFor="let food of listFood">
+        <mat-list-item>{{food.FoodName}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </form>
+  </div>
+  <div>
+    <button matTooltip="Remore a item from the list"class="btn" type="submit" mat-raised-button color="warn">Delete</button>
+    <button matTooltip="Add a new Item to the list" class="btn-register" type="submit" mat-raised-button color="primary">Create</button>
+  </div>
+
+
+  <pre>{{ form.value |  json }}</pre>
+<pre>{{ form.valid |  json }}</pre>
+</div>
+
+
+
+

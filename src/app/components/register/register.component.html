@@ -1,0 +1,39 @@
+<div class="main">
+  <div>
+    <form [formGroup]="form" class="form"(submit)="register()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Enter your email</mat-label>
+        <input formControlName="email" matInput color="accent" placeholder="Jokas@example.com">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Enter your password</mat-label>
+        <input matInput formControlName="password" name="password" placeholder="Your Password"
+          [type]="hide2? 'password':'text'"   
+        />
+        <button mat-icon-button matSuffix (click)="hide2 = !hide2">
+          <mat-icon>{{hide2 ? 'visibility_off':'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password checker</mat-label>
+        <input matInput name="passwordChecker" placeholder="Your Password" formControlName="cPassword"
+          [type]="hide ? 'password' : 'text'"  
+        >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [disabled]="form.get('cPassword')?.disabled">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-progress-bar mode="determinate" [value]=score></mat-progress-bar>
+      <div>
+        <button class="btn" mat-raised-button color="warn" routerLink="/login" >Cancel</button>
+        <button class="btn-register" mat-raised-button color="primary" type="submit" >Register</button>
+      </div>
+    </form>
+  </div>
+  <pre>{{ form.value |  json }}</pre>
+  <pre>{{ form.get("password")?.errors |  json }}</pre>
+  <pre>{{ form.get("cPassword")?.errors |  json }}</pre>
+  <pre>{{ form.get("cPassword")?.valid |  json }}</pre>
+  <pre>{{ form.valid |  json }}</pre>
+</div>
