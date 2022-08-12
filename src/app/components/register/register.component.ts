@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
     ]).subscribe(val=>{
      console.log(val)
       this.checker(val);
+      this.passwordScore
     })
   }
 
@@ -70,35 +71,20 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordScore(password:string){
-    //let regex= {'/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/'}
-    //let RegExp= {'/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/'}
+    let n = 0;
+    if(!password)return n; 
 
-    let strengthPassed=0;
-    
-    if(!password)return 0; 
-      if(password.length >4){
-        return 12;
-      } else if(password.length>6){
-        return 50;
-      }
-    return 0;
+      if( password.match(/[^\w\*]/))  n+= 34; //char especial
+      if(password.match(/^.{6,}$/)) n+= 33;  // tamanho
+      if(password.match(/\d/)) n+= 33; //ve se tem numeros
+      
+    return n;
   }
-
-
 
 
 } 
 
 
-
-
-// const  rule = {
-//   hasNumber:    password.match(/\d/)       ? true : false,
-//   hasLowerCase: password.match(/[a-z]/)    ? true : false,
-//   hasUpperCase: password.match(/[A-Z]/)    ? true : false,
-//   isBigLength:  password.match(/^.{10,}$/) ? true : false,
-//   specialChar:  password.match(/[^\w\*]/)  ? true : false
-// } 
 
 
 //conseito de tempo 
