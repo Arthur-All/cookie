@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { listModel } from 'src/app/model/listModel';
 import { ListService } from 'src/app/services/list.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+
 
 @Component({
   selector: 'app-list',
@@ -9,27 +13,66 @@ import { ListService } from 'src/app/services/list.service';
   styleUrls: ['./list.component.scss']
 })
 export class listComponent implements OnInit {
-  listFood:listModel[]=[];
-  hide=true;
-  form =  new FormGroup({
-    email: new FormControl('',[Validators.email,Validators.required]),
-    
-  });
-  constructor(
-    private listService:ListService,
-    private model:listModel
-  ) { }
+  listFood: listModel;
+  foodToEdit?: listModel;
+  hide = true;
+  connection: HubConnection;
 
-  ngOnInit() {
-    this.onForm();
-    //this.listService.listModel =  {Id: '', FoodName:""};
-    this.listService.get();
+  constructor(
+    private listService: ListService,
+    private model: listModel,
+    private _snackBar: MatSnackBar,
+    private jwtHelper: JwtHelperService
+  ) {
+    this.connection = new HubConnectionBuilder()
+      .withUrl("https://localhost:7006/chat")
+      .build();
+
   }
 
-  onForm(){
-    this.form.get("email")?.valueChanges.subscribe(val=>{
-      console.log("oie",val)
+  ngOnInit() {
+    this.connection.start().then(function () {
+      console.log("SignalR Connected")
+    });
+
+    this.msg();
+
+    let token = localStorage.getItem("token") ?? "";
+
+    this.listService.get()
+      .subscribe((resp: listModel) => {
+        this.listFood = resp;
+      })
+  }
+  msg() {
+    this.connection.on('Send', (resp: any) => {
+      alert(resp)
+      console.log(resp);
     })
-  } 
-  
+  }
+
+  isUserAuthenticated = (): boolean => {
+    const token = localStorage.getItem("jwt");
+
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    return false;
+  }
+  newFood() {
+    this.foodToEdit = new listModel();
+  }
+
+  editFood(food: listModel) {
+    this.foodToEdit = food;
+  }
+
+  updateFoodList(foods: listModel) {
+    this.listFood = foods;
+  }
+
+  openSnackBar() {
+    this._snackBar.open("...");
+  }
+
 }

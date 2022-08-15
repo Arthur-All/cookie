@@ -1,4 +1,4 @@
 export class listModel{
-    Id = '';
+    id ?: number;
     FoodName = '';
 }

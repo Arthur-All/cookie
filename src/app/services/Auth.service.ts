@@ -12,7 +12,9 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginService {
 
-  public credencial: loginModel
+  credencial: loginModel = {email:'', password:''};
+  invalidLogin:boolean;
+  list= new listModel();
   
   constructor(
     private http:HttpClient,
@@ -22,12 +24,12 @@ export class LoginService {
    
   login(){
       this.http.post<token>("https://localhost:7006/api/auth/login",this.credencial,{
-        headers: 
-                new HttpHeaders({"Content-Type":"application/json"})
+        headers: new HttpHeaders({"Content-Type":"application/json"})
       }).subscribe({
         next: (resp: token)=>{
           let {token} = resp
           localStorage.setItem("jwt",token);
+          this.invalidLogin = false;
           this.router.navigate(["/list"])
         }
       })

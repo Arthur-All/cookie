@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, PatternValidator, Validators } from '@angular/forms';
 import { loginModel } from 'src/app/model/loginModel';
 import { ListService } from 'src/app/services/list.service';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from 'src/app/services/Auth.service';
 
 
 @Component({
@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   
   hide=true;
   form =  new FormGroup({
-    UserName: new FormControl('',[Validators.email,Validators.required]),
-    Password: new FormControl('',[Validators.required]) //Validators.pattern("[a-zA-Z]*"),
+    email: new FormControl('',[Validators.email,Validators.required]),
+    password: new FormControl('',[Validators.required]) //Validators.pattern("[a-zA-Z]*"),
   });
   constructor(
     private servelogin: LoginService

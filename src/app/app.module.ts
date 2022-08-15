@@ -6,24 +6,33 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MaterialModule } from './material.module';
 import { listComponent } from './components/list/list.component';
-import { LoginService } from './services/login.service';
+import { LoginService } from './services/Auth.service';
 import { ListService } from './services/list.service';
 import { listModel } from './model/listModel';
 import { loginModel } from './model/loginModel';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './components/guards/auth.guard';
+import { QuaquercoisaInterceptor } from './quaquercoisa.interceptor';
+import { modalComponent } from './components/modal/modal.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    listComponent
+    listComponent,
+    modalComponent
     
   ],
   imports: [
@@ -34,11 +43,19 @@ import { loginModel } from './model/loginModel';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:7006"],
+        disallowedRoutes: []
+      }
+    })
 
   ],
-  providers: [
+  providers: [AuthGuard,
     {provide: MatFormFieldModule, useValue: {appearance: 'fill'}
   },
+  { provide: HTTP_INTERCEPTORS, useClass: QuaquercoisaInterceptor, multi: true },
   LoginService,
   ListService,
   listModel,

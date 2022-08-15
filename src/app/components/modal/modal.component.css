@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #FDFFF5;;
+    width: 90%;
+    border: none;
+    border-radius: 10px;
+    font-size: 12pt;
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+.title{
+    display: flex;
+    
+    align-items: center;
+    margin: 15px;
+    padding: 15px;
+}
+
+.table{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 20vh;
+    size: 35%;
+    padding-left: 5vw;
+    background: #FDFFF5;
+    border-radius: 30px;
+    box-shadow: 0px 0px 80px #B0792C;
+    outline: none;
+}
+
+.item  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FDFFF5;
+    width: 15vw;
+    border: none;
+    border-radius: 10px;
+    background-color: #B0792C;
+    font-size: 12pt;
+   
+    outline: none;
+    box-sizing: border-box;
+    margin:8px;
+    padding: 10px;
+}
+
+.btn{
+    width: 5vw;
+    padding: 5px;
+   margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: 700;
+    box-shadow: 0px 10px 40px -12px #B0792C;
+    
+}
+
+.btn-save{
+    color: #FDFFF5;
+    background: #679C3E;
+    width: 5vw;
+    padding: 5px;
+   margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: 700;
+    box-shadow: 0px 10px 40px -12px #B0792C;
+    margin: 5px;
+    padding: 5px;
+}
+
+.btn-delete{
+    color: #FDFFF5;
+    background: #DE2C2C;
+    width: 5vw;
+    padding: 5px;
+   margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: 700;
+    box-shadow: 0px 10px 40px -12px #B0792C;
+    margin: 5px;
+    padding: 5px;
+}

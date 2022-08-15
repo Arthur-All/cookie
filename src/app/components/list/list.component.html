@@ -1,22 +1,27 @@
 <div class="main">
   <div>
-    <form [formGroup]="form" class="form">
+
+    <mat-selection-list #food>
       <mat-list *ngFor="let food of listFood">
-        <mat-list-item>{{food.FoodName}}</mat-list-item>
-        <mat-divider></mat-divider>
+        <td>{{food.foodName}}
+          <button matTooltip="Remore a item from the list" class="btn" type="submit" mat-raised-button
+          color="warn" (click)="editFood(food)">EDIT</button>
+        </td>
+        <!--mat-list-option-->
       </mat-list>
-    </form>
+
+      <mat-divider></mat-divider>
+      <p>Items selected: {{food.selectedOptions.selected.length}}</p>
+    </mat-selection-list>
+
   </div>
   <div>
-    <button matTooltip="Remore a item from the list"class="btn" type="submit" mat-raised-button color="warn">Delete</button>
-    <button matTooltip="Add a new Item to the list" class="btn-register" type="submit" mat-raised-button color="primary">Create</button>
+    
+    <button matTooltip="Add a new Item to the list" class="btn-register" type="submit" mat-raised-button
+      color="primary" (click)="newFood()">Create</button>
+      <button mat-stroked-button (click)="openSnackBar()">Show snack-bar</button>
   </div>
 
+  <app-modal [food]="foodToEdit" (foodUpdated)="updateFoodList($event)"></app-modal>
 
-  <pre>{{ form.value |  json }}</pre>
-<pre>{{ form.valid |  json }}</pre>
 </div>
-
-
-
-

@@ -4,12 +4,12 @@
       <div><!--Alerta--></div>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Enter your email</mat-label>
-        <input formControlName="UserName" matInput color="accent" placeholder="Jokas@example.com" >
+        <input formControlName="email" name="email" matInput color="accent" placeholder="Jokas@example.com" >
       </mat-form-field>
       
       <mat-form-field  appearance="fill" class="full-width">
         <mat-label>Enter your password</mat-label>
-        <input matInput formControlName="Password" name="password" [type]="hide?'password':'text'" placeholder="Your Password" >
+        <input matInput formControlName="password" name="password" [type]="hide?'password':'text'" placeholder="Your Password" >
         <button mat-icon-button matSuffix (click)="hide=!hide">
           <mat-icon>{{hide?'disabled_visible':'visibility'}}</mat-icon>
         </button>
