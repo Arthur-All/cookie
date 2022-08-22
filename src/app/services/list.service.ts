@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { API_PATH } from 'src/environments/environment';
 import { listModel } from '../model/listModel';
 
@@ -10,60 +9,44 @@ import { listModel } from '../model/listModel';
 export class ListService {
 
   constructor(
-    private http:HttpClient
+    private http: HttpClient
   ) { }
 
-  get(){
+  get() {
     let token = localStorage.getItem('token');
-    return this.http.get<listModel>(`${API_PATH}foodlist`,{
-      headers:{
-        Authrization:`Bearer ${token}`
+    return this.http.get<listModel>(`${API_PATH}foodlist`, {
+      headers: {
+        Authrization: `Bearer ${token}`
       }
     });
   }
 
-  updateList(food:listModel){
+  updateList(food: listModel) {
     let token = localStorage.getItem('token');
-    return this.http.put<listModel[]>(`${API_PATH}update`,food,{
-      headers:{
-        Authrization:`Bearer ${token}`
+    return this.http.put<listModel[]>(`${API_PATH}update`, food, {
+      headers: {
+        Authrization: `Bearer ${token}`
       }
     });
   }
 
-  createItem(food:listModel){
+  createItem(food: listModel) {
     let token = localStorage.getItem('token');
-    return this.http.post<listModel[]>(`${API_PATH}post`,food,{
-      headers:{
-        Authrization:`Bearer ${token}`
-      }
-    });
-  }
- 
-  deleteItem(food:listModel){
-    let token = localStorage.getItem('token');
-    return this.http.delete<listModel[]>(`${API_PATH}${food.id}`,{
-      headers:{
-        Authrization:`Bearer ${token}`
+    return this.http.post<listModel[]>(`${API_PATH}post`, food, {
+      headers: {
+        Authrization: `Bearer ${token}`
       }
     });
   }
 
-
-
-
-  /*deleteItem(food:listModel){
+  deleteItem(food: listModel) {
     let token = localStorage.getItem('token');
-    return this.http.delete(`https://localhost:7006/api/Cookie/${food.Id}`,{
-      headers:{
-        Authrization:`Bearer ${token}`
+    return this.http.delete<listModel[]>(`${API_PATH}${food.id}`, {
+      headers: {
+        Authrization: `Bearer ${token}`
       }
     });
   }
-  /*deleteItem(Id:number){
-    let token = localStorage.getItem('token');
-    return this.http.delete(`https://localhost:7006/api/Cookie/${Id}`);
-  }*/
 }
 
 

@@ -1,4 +1,4 @@
-export class listModel{
-    id ?: number;
+export class listModel {
+    id?: number;
     FoodName = '';
 }

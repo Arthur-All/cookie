@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+
 import { combineLatest } from 'rxjs';
 @Component({
   selector: 'app-register',
@@ -11,8 +10,7 @@ import { combineLatest } from 'rxjs';
 export class RegisterComponent implements OnInit {
   hide = true;
   hide2 = true;
-  score= 0;
-  regex: RegExp
+  score = 0;
 
   form = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
@@ -21,70 +19,65 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(
-    private router:Router,
-    private _snackBar: MatSnackBar
-    ) { }
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.onForm()
   }
 
   onForm() {
-    this.form.get("password")?.valueChanges.subscribe((val)=> {
-      if(val)
-        if(this.form.get("cPassword")?.disabled)
+    this.form.get("password")?.valueChanges.subscribe((val) => {
+      if (val)
+        if (this.form.get("cPassword")?.disabled)
           this.form.get("cPassword")?.enable();
       this.register();
-      this.score= this.passwordScore(val)
+      this.score = this.passwordScore(val)
 
     });
     combineLatest([
       this.form.get("password")?.valueChanges,
       this.form.get("cPassword")?.valueChanges
-    ]).subscribe(val=>{
-     console.log(val)
+    ]).subscribe(val => {
+      console.log(val)
       this.checker(val);
       this.passwordScore
     })
   }
 
-  checker([password,cPassword]){
-   console.log(password,cPassword)
-    if(password != cPassword){
+  checker([password, cPassword]) {
+    console.log(password, cPassword)
+    if (password != cPassword) {
       this.form.get("cPassword").setErrors({
-        
-        different:true
-      }) 
-    }else{
+        different: true
+      })
+    } else {
       this.form.get("cPassword").setErrors(null)
     }
-    
-    /*if(this._password!=this.cPassword){
-      //return this.cPassword.invalid  && console.log("diferent")
-      this.checker = 
-    }
-    return this.cPassword.valid && console.log("valido")*/
   }
 
-  register(){
-    //if(this.checker==invalied)
-  }
-
-  passwordScore(password:string){
+  passwordScore(password: string) {
     let n = 0;
-    if(!password)return n; 
+    if (!password) return n;
 
-      if( password.match(/[^\w\*]/))  n+= 34; //char especial
-      if(password.match(/^.{6,}$/)) n+= 33;  // tamanho
-      if(password.match(/\d/)) n+= 33; //ve se tem numeros
-      
+    if (password.match(/[^\w\*]/)) n += 34; //char especial
+    if (password.match(/^.{6,}$/)) n += 33;  // tamanho
+    if (password.match(/\d/)) n += 33; //ve se tem numeros
+
     return n;
   }
 
+  register() {
+    //if(this.checker==invalied)
+  }
 
-} 
+}
 
 
+/*line 61...if(this._password!=this.cPassword){
+     //return this.cPassword.invalid  && console.log("diferent")
+     this.checker =
+   }
+  return this.cPassword.valid && console.log("valido")*/
 
 
 //conseito de tempo 

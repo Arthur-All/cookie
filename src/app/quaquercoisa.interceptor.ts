@@ -10,12 +10,12 @@ import { catchError, Observable, of } from 'rxjs';
 @Injectable()
 export class QuaquercoisaInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    
+
     return next.handle(request).pipe(
-      catchError(()=>{
+      catchError(() => {
         console.error("deu ruim");
         return of()
       })

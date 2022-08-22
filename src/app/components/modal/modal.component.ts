@@ -8,6 +8,7 @@ import { ListService } from 'src/app/services/list.service';
   styleUrls: ['./modal.component.css']
 })
 export class modalComponent implements OnInit {
+  listFood: listModel;
   @Input() food?: listModel;
   @Output() foodUpdated = new EventEmitter<listModel[]>();
   constructor(private listService: ListService) { }
@@ -27,5 +28,11 @@ export class modalComponent implements OnInit {
   deleteFood(food: listModel) {
     this.listService.deleteItem(food)
       .subscribe((foods: listModel[]) => this.foodUpdated.emit(foods));
+  }
+
+  refresh() {
+    setTimeout(() => {
+      window.location.reload()
+    }, 100)
   }
 }

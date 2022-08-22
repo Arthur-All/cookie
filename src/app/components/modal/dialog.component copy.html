@@ -1,0 +1,29 @@
+<!--div class="table" *ngIf="food">
+    <div class="title">
+        <h4> food: {{food.foodName}}</h4>
+    </div>
+    <div class="item">
+        <div class="place">
+            <p>Name:</p>
+            <input 
+            type="text" [(ngModel)]="food.foodName" placeholder="Name the food" />
+        </div>
+
+    </div>
+    <button class="btn-save" (click)="updateFood(food)" *ngIf="food.id">Save</button>
+    <button class="btn-save" (click)="createFood(food)" *ngIf="!food.id">Create</button>
+    <button class="btn-delete" (click)="deleteFood(food)" *ngIf="food.id">Delete</button>
+</div-->
+
+
+
+
+<mat-card *ngIf="food">
+    <h4> food: {{food.foodName}}</h4>
+    <p>Name:</p>
+    <input type="text" [(ngModel)]="food.foodName" placeholder="Name the food" />
+
+    <button class="btn-save" (click)="updateFood(food)" *ngIf="food.id">Save</button>
+    <button class="btn-save" (click)="createFood(food)" *ngIf="!food.id">Create</button>
+    <button class="btn-delete" (click)="deleteFood(food)" *ngIf="food.id">Delete</button>
+</mat-card>

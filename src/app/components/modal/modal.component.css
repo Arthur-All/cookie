@@ -1,31 +1,49 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans', sans-serif;
 }
 
-input{
+p{
+    padding: 0;
+    margin: 0;
+    size: 20%;
+}
+
+
+input {
+    padding: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
-    background: #FDFFF5;;
-    width: 90%;
+    background: rgb(192, 192, 192);
+    color: rgb(36, 1, 1);
+    width: 80%;
     border: none;
     border-radius: 10px;
     font-size: 12pt;
     outline: none;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.main {
+    margin-bottom: 3vh;
 }
 
 
-.title{
+
+.title {
     display: flex;
-    
+
     align-items: center;
     margin: 15px;
     padding: 15px;
 }
 
-.table{
+.table {
     display: block;
     justify-content: center;
     align-items: center;
@@ -39,7 +57,7 @@ input{
     outline: none;
 }
 
-.item  {
+.item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,31 +67,33 @@ input{
     border-radius: 10px;
     background-color: #B0792C;
     font-size: 12pt;
-   
+
     outline: none;
     box-sizing: border-box;
-    margin:8px;
+    margin: 8px;
     padding: 10px;
+    
 }
 
-.btn{
+.btn {
     width: 5vw;
     padding: 5px;
-   margin-left: 5px;
+    margin-left: 5px;
     border: none;
     border-radius: 5px;
     outline: none;
     font-weight: 700;
     box-shadow: 0px 10px 40px -12px #B0792C;
-    
+
 }
 
-.btn-save{
+
+.btn-save {
     color: #FDFFF5;
     background: #679C3E;
     width: 5vw;
     padding: 5px;
-   margin-left: 5px;
+    margin-left: 5px;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -81,14 +101,15 @@ input{
     box-shadow: 0px 10px 40px -12px #B0792C;
     margin: 5px;
     padding: 5px;
+    
 }
 
-.btn-delete{
+.btn-delete {
     color: #FDFFF5;
     background: #DE2C2C;
     width: 5vw;
     padding: 5px;
-   margin-left: 5px;
+    margin-left: 5px;
     border: none;
     border-radius: 5px;
     outline: none;

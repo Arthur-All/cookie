@@ -1,32 +1,31 @@
 <div class="main">
   <div>
     <form [formGroup]="form" class="form">
-      <div><!--Alerta--></div>
+      <div>
+        <!--Alerta-->
+      </div>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Enter your email</mat-label>
-        <input formControlName="email" name="email" matInput color="accent" placeholder="Jokas@example.com" >
+        <input formControlName="email" name="email" matInput color="accent" placeholder="Jokas@example.com">
       </mat-form-field>
-      
-      <mat-form-field  appearance="fill" class="full-width">
+
+      <mat-form-field appearance="fill" class="full-width">
         <mat-label>Enter your password</mat-label>
-        <input matInput formControlName="password" name="password" [type]="hide?'password':'text'" placeholder="Your Password" >
+        <input matInput formControlName="password" name="password" [type]="hide?'password':'text'"
+          placeholder="Your Password">
         <button mat-icon-button matSuffix (click)="hide=!hide">
           <mat-icon>{{hide?'disabled_visible':'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
-      
+
     </form>
   </div>
   <div>
-    <button class="btn" type="submit" mat-raised-button color="primary" (click)="_login()" >Login</button>
+    <button class="btn" type="submit" mat-raised-button color="primary" (click)="_login()">Login</button>
     <button class="btn-register" mat-raised-button target="_blank" routerLink="/register">Register</button>
   </div>
 
 
   <pre>{{ form.value |  json }}</pre>
-<pre>{{ form.valid |  json }}</pre>
+  <pre>{{ form.valid |  json }}</pre>
 </div>
-
-
-
-

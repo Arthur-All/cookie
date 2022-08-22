@@ -3,7 +3,6 @@ import { listModel } from 'src/app/model/listModel';
 import { ListService } from 'src/app/services/list.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatButton } from '@angular/material/button';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 
 
@@ -20,7 +19,6 @@ export class listComponent implements OnInit {
 
   constructor(
     private listService: ListService,
-    private model: listModel,
     private _snackBar: MatSnackBar,
     private jwtHelper: JwtHelperService
   ) {
